@@ -13,8 +13,13 @@ public class UseExecutors {
             .limit(10)
             .collect(Collectors.toList());
 
+    new Test();
     ExecutorService service = Executors.newCachedThreadPool();
     runnables.forEach(service::execute);
-    service.shutdown();
+//    service.shutdown();
+  }
+
+  private static class Test {
+
   }
 }
