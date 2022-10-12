@@ -1,4 +1,4 @@
-package com.sutao.concurrency.violate;
+package com.sutao.concurrency.volatiletest;
 
 public class VolatileTest extends  Thread{
 	private boolean isRunning = true;
@@ -11,13 +11,13 @@ public class VolatileTest extends  Thread{
 	public void run(){
 		System.out.println("进入了run...............");
 		while (isRunning){
-//			try {
-//				Thread.sleep(100);
-//			} catch (InterruptedException e) {
-//				e.printStackTrace();
-//			}
+			try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 
-			Thread.yield();
+//			Thread.yield();
 		}
 		System.out.println("isRunning的值被修改为为false,线程将被停止了");
 	}

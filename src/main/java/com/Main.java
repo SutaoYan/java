@@ -1,6 +1,5 @@
 package com;
 
-
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.util.Collections;
@@ -62,8 +61,6 @@ public class Main {
         c = (char) b;
         System.out.println(c);
     }
-
-
 
 
     public class QueueBehavior {

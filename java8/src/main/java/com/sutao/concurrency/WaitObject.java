@@ -15,8 +15,9 @@ public class WaitObject extends Thread{
                 WaitObject.object.notify();
                 System.out.println("wait" + id);
                 WaitObject.object.wait();
-                System.out.println("i am start " + id);
+                System.out.println("continue" + id);
                 WaitObject.object.notify();
+                System.out.println("i am start " + id);
             }
 
         } catch (InterruptedException e) {

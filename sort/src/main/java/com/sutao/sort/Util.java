@@ -24,4 +24,14 @@ public class Util {
     int max = list.stream().max((x, y) -> x.compareTo(y)).get();
     return max;
   }
+
+  public static String toString(int[] numbers) {
+    if (null == numbers) return "";
+    StringBuilder sb = new StringBuilder();
+    for (int c : numbers) {
+      sb.append(c + " ");
+    }
+
+    return sb.toString();
+  }
 }

@@ -1,6 +1,6 @@
 package com.sutao.sort;
 
-import java.util.ArrayList;
+
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -13,28 +13,51 @@ public class QuickSort {
 //    static List<Integer> LIST = Stream.of(10, 9, 8, 7, 6, 5, 4, 3, 2, 1).collect(Collectors.toList());
 
     public static void main(String[] args) {
-        quickSort(LIST, 0, LIST.size()-1);
+        int[] array = new int[]{106, 9, 58, 74, 6, 5, 43, 3, 21, 1};
+        new QuickSort().quickSort(array, 0, array.length - 1);
+        System.out.println(Util.toString(array));
+//        quickSort(LIST, 0, LIST.size() - 1);
     }
 
-    public static void quickSort(List<Integer> origin, int first, int last) {
-        if (first >= last) return ;
-        int key = origin.get(first);
-        int end = last;
+//    public static void quickSort(List<Integer> origin, int first, int last) {
+//        if (first >= last) return ;
+//        int key = origin.get(first);
+//        int end = last;
+//
+//        while(first < last ) {
+//            while (last > first && origin.get(last) >= key) last--;
+//            origin.set(first, origin.get(last));
+//            while (first < last && origin.get(first)<= key) first++;
+//            origin.set(last, origin.get(first));
+//        }
+//        origin.set(first, key);
+//        quickSort(origin, 0, first-1);
+//        quickSort(origin, first+1, end);
+//    }
 
-        while(first < last ) {
-            while (last > first && origin.get(last) >= key) last--;
-            origin.set(first, origin.get(last));
-            while (first < last && origin.get(first)<= key) first++;
-            origin.set(last, origin.get(first));
+    int partition(int[] array, int first, int last) {
+        if (first >= last) return first;
+
+        while (first < last) {
+            int pivot = first;
+            int key = array[pivot];
+            while (array[last] >= key && last > first) last--;
+            array[pivot] = array[last];
+            while (array[first] <= key && first < last) first++;
+            array[last] = array[first];
+            array[first] = key;
         }
-        origin.set(first, key);
-        quickSort(origin, 0, first-1);
-        quickSort(origin, first+1, end);
 
-        System.out.println();
-        origin.forEach((x) -> {
-            System.out.print(x + " " );
-        });
+        return first;
+
     }
+
+    void quickSort(int[] array, int first, int last) {
+        if (null == array || first >= last) return;
+        int partition = partition(array, first, last);
+        quickSort(array, first, partition - 1);
+        quickSort(array, partition + 1, last);
+    }
+
 
 }

@@ -1,5 +1,6 @@
 package com.sutao.sort;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -12,7 +13,7 @@ public class SelectionSort {
 //  static List<Integer> LIST = Stream.of(10, 9, 8, 7, 6, 5, 4, 3, 2, 1).collect(Collectors.toList());
   public static void main(String[] args) {
 
-    List<Integer> list = LIST.stream().collect(Collectors.toList());
+    List<Integer> list = new ArrayList<>(LIST);
     System.out.println("start selection sort ...");
     list.forEach( x -> System.out.print (" " + x));
     System.out.println();
@@ -31,6 +32,4 @@ public class SelectionSort {
     list.forEach( x -> System.out.print (" " + x));
     System.out.println();
   }
-
-
 }
