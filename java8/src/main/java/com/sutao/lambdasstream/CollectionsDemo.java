@@ -2,6 +2,7 @@ package com.sutao.lambdasstream;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -30,6 +31,21 @@ public class CollectionsDemo {
   public void printNumsParallel(Function<Integer, Integer> function) {
     System.out.println(nums.parallelStream().map(function).collect(Collectors.toList()));
   }
+
+  BiFunction<Integer, Long, Integer> f(final String s) {
+    return (Integer arg1, Long arg2) ->{
+      for(int i = 0; i < arg1; i++) {
+        System.out.println(s);
+        try {
+          Thread.sleep(arg2);
+        } catch (InterruptedException e) {
+          throw new RuntimeException(e);
+        }
+      }
+      return null;
+    };
+  }
+
 
   public static void main(String[] args) {
     CollectionsDemo demo = new CollectionsDemo();

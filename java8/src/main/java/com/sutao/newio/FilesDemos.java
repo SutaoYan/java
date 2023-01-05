@@ -10,23 +10,26 @@ import java.util.stream.Stream;
 public class FilesDemos {
   public static void main(String[] args) throws IOException{
     // Create a directory
-    Files.createDirectories(Paths.get("data"));
+    Path data = Files.createDirectories(Paths.get("data"));
+//    Files.createFile(Paths.get("data", "data.txt"));
 
     // Create a directory with intermediate directories
-    Files.createDirectories(Paths.get("sub1", "sub2", "sub3"));
+    Files.createDirectories(Paths.get("data","sub1", "sub2", "sub3"));
 
     // Add an empty file to get that directory
-    Files.createFile(Paths.get("sub1", "sub2", "sub3", "myFile.txt"));
+    if(!Files.exists(Paths.get("data","sub1", "sub2", "sub3", "myFile.txt"))) {
+      Files.createFile(Paths.get("data","sub1", "sub2", "sub3", "myFile.txt"));
+    }
 
     // Delete them all
-    boolean deleted = Files.deleteIfExists(Paths.get("sub1", "sub2", "sub3", "myFile.txt"));
-    deleted = Files.deleteIfExists(Paths.get("data"));
-    deleted = Files.deleteIfExists(Paths.get("sub1", "sub2", "sub3"));
-    deleted = Files.deleteIfExists(Paths.get("sub1", "sub2"));
-    deleted = Files.deleteIfExists(Paths.get("sub1"));
+    boolean deleted = Files.deleteIfExists(Paths.get("data","sub1", "sub2", "sub3", "myFile.txt"));
+//    deleted = Files.deleteIfExists(Paths.get("data"));
+    deleted = Files.deleteIfExists(Paths.get("data","sub1", "sub2", "sub3"));
+    deleted = Files.deleteIfExists(Paths.get("data","sub1", "sub2"));
+    deleted = Files.deleteIfExists(Paths.get("data","sub1"));
 
     // Access a file, read it into a collection, and print
-    Path sourceDir = Paths.get("src", "main", "java", "src/main/java/com.sutao.newio");
+    Path sourceDir = Paths.get("data");
     Path dataFile = sourceDir.resolve("data.txt");
     System.out.println(Files.lines(dataFile).collect(Collectors.toList()));
 
